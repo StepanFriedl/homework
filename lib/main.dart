@@ -6,4 +6,8 @@ void main() => runApp(MaterialApp(
   routes: {
     "/users_list": (context) => UsersList(),
   },
+  theme: ThemeData(
+    primarySwatch: Colors.blue,
+    fontFamily: "MuseoModerno",
+  ),
 ));
