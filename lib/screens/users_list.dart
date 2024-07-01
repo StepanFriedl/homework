@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:homework/classes/user.dart';
 import 'package:homework/widgets/sort_buttons.dart';
 import 'package:homework/screens/detail_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UsersList extends StatefulWidget {
   const UsersList({Key? key}) : super(key: key);
@@ -20,8 +21,21 @@ class _UsersListState extends State<UsersList> {
 
   @override
   void initState() {
-    fetchData();
     super.initState();
+    _loadSortOption();
+    fetchData();
+  }
+
+  Future<void> _loadSortOption() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _selectedSortOption = prefs.getString('selectedSortOption') ?? 'default';
+    });
+  }
+
+  Future<void> _saveSortOption(String option) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('selectedSortOption', option);
   }
 
   Future<void> fetchData() async {
@@ -70,7 +84,8 @@ class _UsersListState extends State<UsersList> {
   void updateSortOption(String option) {
     setState(() {
       _selectedSortOption = option;
-      sortFilteredData(); // Sort data immediately when sort option changes
+      sortFilteredData();
+      _saveSortOption(option);
     });
   }
 
