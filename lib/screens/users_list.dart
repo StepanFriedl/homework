@@ -49,7 +49,30 @@ class _UsersListState extends State<UsersList> {
         _filteredData = List.from(_data);
         sortFilteredData();
       });
+    } else {
+      showErrorDialog();
     }
+  }
+
+  void showErrorDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Error'),
+          content: Text("Sorry, we couldn't retrieve the data you requested. Please try again later."),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                fetchData();
+              },
+              child: Text('Try again'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void filterData(String query) {
