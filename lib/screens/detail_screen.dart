@@ -9,11 +9,10 @@ class DetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black, // Set black background color
+      backgroundColor: Colors.black,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Row with close button
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Row(
@@ -26,7 +25,7 @@ class DetailScreen extends StatelessWidget {
                   ),
                   child: TextButton(
                     onPressed: () {
-                      Navigator.pop(context); // Navigate back when close button is pressed
+                      Navigator.pop(context);
                     },
                     child: Icon(Icons.close, color: Colors.white),
                   ),
@@ -34,7 +33,6 @@ class DetailScreen extends StatelessWidget {
               ],
             ),
           ),
-          // User information displayed using ListTiles and Dividers
           ListTile(
             title: Text(
               'Name: ${user.name}',
@@ -45,7 +43,7 @@ class DetailScreen extends StatelessWidget {
               style: TextStyle(color: Colors.white70),
             ),
           ),
-          Divider(color: Colors.white70), // Divider after the first ListTile
+          Divider(color: Colors.white70),
           ListTile(
             title: Text(
               'Email: ${user.email}',
@@ -56,14 +54,14 @@ class DetailScreen extends StatelessWidget {
               style: TextStyle(color: Colors.white70),
             ),
           ),
-          Divider(color: Colors.white70), // Divider after the second ListTile
+          Divider(color: Colors.white70),
           ListTile(
             title: Text(
               'Website: ${user.website}',
               style: TextStyle(color: Colors.white),
             ),
           ),
-          Divider(color: Colors.white70), // Divider after the third ListTile
+          Divider(color: Colors.white70),
           ListTile(
             title: Text(
               'Address:',
@@ -74,7 +72,7 @@ class DetailScreen extends StatelessWidget {
               style: TextStyle(color: Colors.white70),
             ),
           ),
-          Divider(color: Colors.white70), // Divider after the address ListTile
+          Divider(color: Colors.white70),
           ListTile(
             title: Text(
               'Company: ${user.company.name}',

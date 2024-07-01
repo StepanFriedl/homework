@@ -133,7 +133,7 @@ class _UsersListState extends State<UsersList> {
               width: MediaQuery.of(context).size.width * 0.6,
               child: TextField(
                 onChanged: (value) {
-                  filterData(value); // Update filter query and re-filter
+                  filterData(value);
                 },
                 decoration: InputDecoration(
                   hintText: 'Search...',

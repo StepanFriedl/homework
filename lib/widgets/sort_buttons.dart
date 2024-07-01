@@ -28,7 +28,7 @@ class _SortButtonsWidgetState extends State<SortButtonsWidget> {
   void _sortData(String option) {
     setState(() {
       _selectedOption = option;
-      widget.onDataSorted(option); // Pass the selected option back
+      widget.onDataSorted(option);
     });
   }
 
