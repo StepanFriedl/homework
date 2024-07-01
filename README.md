@@ -1,6 +1,6 @@
 # Homework
 
-This is a simple Flutter app demonstrating HTTP request, list views, filtering, sorting, and navigation. It serves as a demonstration of skills during the hiring process.
+This is a simple Flutter app demonstrating HTTP request, list views, filtering, sorting, and navigation. It serves as a demonstration of skills during hiring processes.
 
 ## Features
 
