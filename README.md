@@ -60,6 +60,12 @@ This is a simple Flutter app demonstrating HTTP request, list views, filtering, 
 - `fonts`: Directory for fonts.
 - `screenshots`: Directory holding screenshots for `README.md`.
 
+## API Used
+
+This project fetches user data from the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) API.
+
+Credit goes to the creator of JSONPlaceholder, [typicode](https://github.com/typicode).
+
 ## How to Use
 
 1. Launch the app to see the home screen.
