@@ -37,9 +37,15 @@ class _SortButtonsWidgetState extends State<SortButtonsWidget> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        _buildSortButton('default'),
-        _buildSortButton('sort by name'),
-        _buildSortButton('sort by email'),
+        Expanded(
+            child: _buildSortButton('default')
+        ),
+        Expanded(
+            child: _buildSortButton('sort by name')
+        ),
+        Expanded(
+            child: _buildSortButton('sort by email')
+        ),
       ],
     );
   }
@@ -48,10 +54,23 @@ class _SortButtonsWidgetState extends State<SortButtonsWidget> {
     bool isSelected = _selectedOption == option;
     return ElevatedButton(
       onPressed: () => _sortData(option),
-      child: Text(option),
+      child: Text(
+        option,
+        style: TextStyle(
+          color: isSelected ? Colors.white : Colors.white38
+        ),
+      ),
       style: ButtonStyle(
-        backgroundColor:
-        MaterialStateProperty.all(isSelected ? Colors.blue : Colors.grey),
+        backgroundColor: WidgetStateProperty.all(
+            isSelected ? Color(0xff333333) : Color(0xff222222)),
+        padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
+          EdgeInsets.zero,
+        ),
+        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.zero,
+          ),
+        ),
       ),
     );
   }

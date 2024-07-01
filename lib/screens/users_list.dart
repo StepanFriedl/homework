@@ -60,14 +60,21 @@ class _UsersListState extends State<UsersList> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Error'),
-          content: Text("Sorry, we couldn't retrieve the data you requested. Please try again later."),
+          backgroundColor: Colors.white70,
+          content: Text(
+              "Sorry, we couldn't retrieve the data you requested. Please try again later."),
           actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                fetchData();
-              },
-              child: Text('Try again'),
+            Container(
+              decoration: BoxDecoration(
+                  color: Colors.white70,
+                  borderRadius: BorderRadius.circular(16)),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  fetchData();
+                },
+                child: Text('Try again'),
+              ),
             ),
           ],
         );
@@ -80,8 +87,8 @@ class _UsersListState extends State<UsersList> {
       _query = query.toLowerCase();
       _filteredData = _data
           .where((element) =>
-      element.username.toLowerCase().contains(_query) ||
-          element.email.toLowerCase().contains(_query))
+              element.username.toLowerCase().contains(_query) ||
+              element.email.toLowerCase().contains(_query))
           .toList();
 
       sortFilteredData();
@@ -116,10 +123,12 @@ class _UsersListState extends State<UsersList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('User List'),
+        title: Text('Users List', style: TextStyle(color: Colors.yellow)),
+        backgroundColor: Color(0xFF090809),
         actions: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
             child: Container(
               width: MediaQuery.of(context).size.width * 0.6,
               child: TextField(
@@ -129,7 +138,7 @@ class _UsersListState extends State<UsersList> {
                 decoration: InputDecoration(
                   hintText: 'Search...',
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: Color(0xFFD6D6D6),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12.0),
                     borderSide: BorderSide.none,
@@ -140,42 +149,62 @@ class _UsersListState extends State<UsersList> {
           ),
         ],
       ),
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Color(0xFF060606),
       body: _data.isEmpty
           ? Center(child: CircularProgressIndicator())
           : _filteredData.isEmpty
-          ? Center(child: Text("No results"))
-          : Column(
-        children: [
-          SortButtonsWidget(
-            data: _filteredData,
-            initialSelectedOption: _selectedSortOption,
-            onDataSorted: (sortedOption) {
-              updateSortOption(sortedOption);
-            },
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: _filteredData.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(_filteredData[index].username),
-                  subtitle: Text(_filteredData[index].email),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            DetailScreen(user: _filteredData[index]),
+              ? Center(
+                  child: Text(
+                  "No results",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                  ),
+                ))
+              : Column(
+                  children: [
+                    SortButtonsWidget(
+                      data: _filteredData,
+                      initialSelectedOption: _selectedSortOption,
+                      onDataSorted: (sortedOption) {
+                        updateSortOption(sortedOption);
+                      },
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: _filteredData.length,
+                        itemBuilder: (context, index) {
+                          return Column(
+                            children: [
+                              ListTile(
+                                title: Text(
+                                  _filteredData[index].username,
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                subtitle: Text(_filteredData[index].email,
+                                    style: TextStyle(color: Colors.white60)),
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => DetailScreen(
+                                          user: _filteredData[index]),
+                                    ),
+                                  );
+                                },
+                              ),
+                              Divider(
+                                color: Colors.white60,
+                                indent: 16,
+                                endIndent: 32,
+                              )
+                            ],
+                          );
+                        },
                       ),
-                    );
-                  },
-                );
-              },
-            ),
-          ),
-        ],
-      ),
+                    ),
+                  ],
+                ),
     );
   }
 }
