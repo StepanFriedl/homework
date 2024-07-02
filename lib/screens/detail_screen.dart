@@ -18,18 +18,22 @@ class DetailScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0xFF263238),
-                  ),
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Icon(Icons.close, color: Colors.white),
+                Padding(
+                  padding: EdgeInsets.only(top: 32.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color(0xFF263238),
+                    ),
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(Icons.close, color: Colors.white),
+                    ),
                   ),
                 ),
+
               ],
             ),
           ),
